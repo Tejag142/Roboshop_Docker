@@ -4,7 +4,7 @@ networks:
     name: roboshop
     external: true
     #external: true #I created network already using docker network create roboshop
-volumes:
+#volumes
   mongodb:
   redis:
   mysql:
@@ -13,8 +13,8 @@ services:
   mongodb:
     image: teja142/mongodb:roboshop
     container_name: mongodb
-    volumes:
-    - mongodb:/data/db
+    #volumes
+    #- mongodb:/data/db
   catalogue:
     image: teja142/catalogue:roboshop
     container_name: catalogue
@@ -23,8 +23,8 @@ services:
   redis:
     image: teja142/redis:roboshop
     container_name: redis
-    volumes:
-    - redis:/data
+    #volumes
+    #- redis:/data
   user:
     image: teja142/user:roboshop
     container_name: user
@@ -40,8 +40,8 @@ services:
   mysql:
     image: teja142/mysql:roboshop
     container_name: mysql
-    volumes:
-    - mysql:/var/lib/mysql
+    #volumes
+    #- mysql:/var/lib/mysql
   shipping:
     image: teja142/shipping:roboshop
     container_name: shipping
@@ -54,8 +54,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
-    volumes:
-    - rabbitmq:/var/lib/rabbitmq
+    #volumes
+    #- rabbitmq:/var/lib/rabbitmq
   payment:
     image: teja142/payment:roboshop
     container_name: payment
