@@ -11,12 +11,12 @@ volumes:
   rabbitmq: # docker volume create rabbitmq
 services:
   mongodb:
-    image: joindevops/mongodb:v1
+    image: teja142/mongodb:roboshop
     container_name: mongodb
     volumes:
     - mongodb:/data/db
   catalogue:
-    image: joindevops/catalogue:v1
+    image: teja142/catalogue:roboshop
     container_name: catalogue
     depends_on:
     - mongodb
@@ -26,24 +26,24 @@ services:
     volumes:
     - redis:/data
   user:
-    image: joindevops/user:v1
+    image: teja142/user:roboshop
     container_name: user
     depends_on:
     - redis
     - mongodb
   cart:
-    image: joindevops/cart:v1
+    image: teja142/cart:roboshop
     container_name: cart
     depends_on:
     - catalogue
     - redis
   mysql:
-    image: joindevops/mysql:v1
+    image: teja142/mysql:roboshop
     container_name: mysql
     volumes:
     - mysql:/var/lib/mysql
   shipping:
-    image: joindevops/shipping:v1
+    image: teja142/shipping:roboshop
     container_name: shipping
     depends_on:
     - mysql
@@ -57,7 +57,7 @@ services:
     volumes:
     - rabbitmq:/var/lib/rabbitmq
   payment:
-    image: joindevops/payment:v1
+    image: teja142/payment:roboshop
     container_name: payment
     environment:
       CART_HOST: cart
@@ -72,7 +72,7 @@ services:
     - cart
     - user
   frontend:
-    image: joindevops/frontend:v1
+    image: teja142/frontend:roboshop
     container_name: frontend
     ports:
     - "80:80"
